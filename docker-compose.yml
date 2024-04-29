@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  twitch_stream:
+    build: .
+    volumes:
+      - ./pia:/etc/openvpn/pia
+      - ./login.conf:/etc/openvpn/pia/login.conf
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    command:
+      [
+        "openvpn",
+        "--config",
+        "/etc/openvpn/pia/US_New_York.ovpn",
+        "--auth-user-pass",
+        "/etc/openvpn/pia/login.conf",
+        "--script-security",
+        "2",
+        "--up",
+        "/usr/local/bin/run_browser.py",
+      ]
+    scale: 10

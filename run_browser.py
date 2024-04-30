@@ -6,6 +6,9 @@ import time
 
 def setup_browser():
     options = Options()
+    options.binary_location = (
+        "/opt/firefox/firefox"  # Specify the correct path to Firefox
+    )
     options.add_argument("--headless")
     driver = webdriver.Firefox(options=options)
     return driver
@@ -13,6 +16,7 @@ def setup_browser():
 
 def access_twitch(driver):
     driver.get("http://twitch.tv/hp_az")
+    print("Page title:", driver.title)  # Print the title of the page
     time.sleep(30)  # Wait for the page to load and the stream to start
     # Additional commands to login and set video quality to 160p would be added here
 

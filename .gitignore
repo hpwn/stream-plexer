@@ -142,3 +142,6 @@ volumes/
 
 # Docker env files
 **/.env*
+pia/login.conf
+.vscode/settings.json
+pia/us_west.ovpn
